@@ -3,19 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vue JS</title>
+    <style>
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid black;
+            display: inline-block;
+            margin: 40px;
+        }
+
+        .red {
+            background: red;
+        }
+        .blue {
+            background: blue;
+        }
+        .green {
+            background: green;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <h2>
-            <a :href="url" target="_blank" v-on:click="">Google</a>
-        </h2>
 
-        <h2>
-            Counter: {{ counter }}
-        </h2>
+        <div 
+            class="circle" 
+            @click="isActive = !isActive" 
+            :class="getCssClasses"
+        ></div>
 
-        <button @click="counter++">Rise</button>
+        <div 
+            class="circle" 
+            :class="[color]"
+        ></div>
+
+        <input type="text" v-model="color">
 
     </div>
     
@@ -25,8 +49,16 @@
         new Vue({
             el: '#app',
             data: {
-                url: 'http://google.com',
-                counter: 0,
+                isActive: false,
+                color: 'blue',
+            },
+            computed: {
+                getCssClasses: function() {
+                    return {
+                        'red': this.isActive,
+                        'green': !this.isActive,
+                    }
+                }
             },
             methods: {
                 
