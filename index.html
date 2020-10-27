@@ -8,17 +8,15 @@
 <body>
     <div id="app">
         <h2>
-            <a href="http://google.com" target="_blank" v-on:click.prevent="">Google</a>
+            <a :href="url" target="_blank" v-on:click="">Google</a>
         </h2>
 
-        <hr>
-
-        <input type="text" v-on:keyup="alertValue">
-
-        <h2 v-on:mouseMove="handleMouseMove">
-            X: {{ x }} / Y: {{ y }}
-            <span v-on:mousemove.stop="">Не изменять</span>
+        <h2>
+            Counter: {{ counter }}
         </h2>
+
+        <button @click="counter++">Rise</button>
+
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -27,17 +25,11 @@
         new Vue({
             el: '#app',
             data: {
-                x: 0,
-                y: 0
+                url: 'http://google.com',
+                counter: 0,
             },
             methods: {
-                handleMouseMove: function(event) {
-                    this.x = event.clientX
-                    this.y = event.clientY
-                },
-                alertValue: function(event) {
-                    if (event.keyCode === 13) { alert(event.target.value) }
-                }
+                
             }
         })
 
