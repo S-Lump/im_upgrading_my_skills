@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<body>
+    <div id="app">
+
+        <my-counter v-for="i in 2"></my-counter>
+
+    </div>
+    <hr>
+    <div id="app2">
+
+        <my-counter></my-counter>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+
+        let component = {
+            template: `
+                <div style="border: 1px solid black">
+                    <h2>Counter: {{ counter }}</h2>
+                    <button @click="counter++">Add to counter</button>
+                </div>
+            `,
+            data() {
+                return {
+                    counter: 0,
+                }
+            },
+            methods: {
+                add: function() {
+                    this.counter++
+                }
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            components: {
+                'my-counter': component,
+            }
+        })
+
+        new Vue({
+            el: '#app2',
+            data: {
+                
+            },
+            components: {
+                myCounter: component,
+            }
+        })
+
+    </script>
+</body>
+</html>
